@@ -1,0 +1,12 @@
+{% if options == "notInstalled" %}
+	<p style="padding: 0 0 0 10px;">Sprout Forms isn't installed!</p>
+{% elseif options | length > 0 %}
+	<select name="{{ name }}" id="{{ name }}">
+		<option value="" {{value ?: 'selected'}} disabled="disabled">Select a form</option>
+		{% for option in options %}
+			<option value="{{ option.handle }}"{% if value == option.handle %} selected{% endif %}>{{ option.name }}</option>
+		{% endfor %}
+	</select>
+{% else %}
+	<p style="padding: 0 0 0 10px;">No forms available.</p>
+{% endif %}
